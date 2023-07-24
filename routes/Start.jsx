@@ -6,18 +6,22 @@ function Start() {
 	return (
 	  <>
 		 <div className="image-wrapper">
+			<h1 className="overlay title">Malins projekt</h1>
 			<img
 			  className="background-Pic"
 			  src={smoke}
 			  alt="A picture of black and white smoke"
 			/>
+			<div className="overlay button-wrapp">
+			<button className="button">Logga in </button>
+			<button className="button">Registrera ny användare</button></div>	
 			<img
 			  className="background-Pic mirror-image"
 			  src={smoke}
 			  alt="A picture of black and white smoke"
 			/>
 		 </div>
-		 <h1 className="title">To do</h1>
+		 {/* <h1 className="title">To do</h1> */}
 	  </>
 	);
  }
