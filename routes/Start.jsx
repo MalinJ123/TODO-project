@@ -6,7 +6,7 @@ function Start() {
 	return (
 	  <>
 		 <div className="image-wrapper">
-			<h1 className="overlay title">Malins projekt</h1>
+			<h1 className="overlay title">Malin projekt</h1>
 			<img
 			  className="background-Pic"
 			  src={smoke}
@@ -21,7 +21,6 @@ function Start() {
 			  alt="A picture of black and white smoke"
 			/>
 		 </div>
-		 {/* <h1 className="title">To do</h1> */}
 	  </>
 	);
  }
