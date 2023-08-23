@@ -49,3 +49,49 @@ body {
 .mirror-image {
 	transform: scaleX(-1) rotate(180deg); /* Optionally, you can add other styles to adjust the positioning of the mirrored image */
 }
+
+
+.overlay2 {
+	position: fixed; /* Fäster overlayen över hela sidan */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent bakgrundsfärg */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000; /* Lägger overlayen över andra element */
+  }
+  
+  /* CSS för modalen */
+  .modal {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	position: relative;
+  }
+  
+  /* Stängknappen i modalen */
+  .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	font-size: 20px;
+	color: #333;
+  }
+  
+  /* Innehållet i modalen */
+  .modal p {
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+  }
+
+  .img-pepp{
+	width: 13em;
+	height: auto;  
+  }
+  
