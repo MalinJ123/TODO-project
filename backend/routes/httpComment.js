@@ -25,20 +25,24 @@ router.get('/', async (req, res) => {
   });
   
 
-// Skapa en ny kommentar
-router.post('/', async (req, res) => {
+// POST-routen för att spara en ny kommentar
+router.post('/api/comment', async (req, res) => {
 	try {
-	  const newComment = req.body; // Ta emot den nya kommentaren 
+	  const newComment = req.body; // Ta emot den nya kommentaren från begäranden
+	  const commentId = generateUniqueId(); // Generera ett unikt ID för kommentaren
   
-	  // Lägg till den nya kommentaren i din databas
+	  // Lägg till tidsstämpel
+	  newComment.timestamp = new Date().toLocaleString();
+  
+	  // Spara den nya kommentaren i din databas
 	  await db.read();
-	  db.data.comment.push(newComment);
+	  db.data.comment[commentId] = newComment;
 	  await db.write();
   
-	  res.status(201).json(newComment); // Returnera den nya kommentaren som JSON
+	  res.status(201).json({ id: commentId, ...newComment }); // Returnera den nya kommentaren med dess ID och tidsstämpel som JSON
 	} catch (error) {
 	  console.error(error);
-	  res.status(500).json({ error: 'Kunde inte skapa kommentaren.' });
+	  res.status(500).json({ error: 'Kunde inte spara kommentaren.' });
 	}
   });
   

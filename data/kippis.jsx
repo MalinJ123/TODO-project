@@ -24,22 +24,39 @@ function Kippis() {
 		setShowMessage(false);
 	};
 
-	const handleCommentChange = () => {
+	const handleCommentChange = (e) => {
 		setNewComment(e.target.value);
 	};
 
 	const handleAddComment = () => {
 		if (newComments) {
-			const updatedComments = [...comments, newComments];
-			setComments(updatedComments);
-			setNewComment('');
+			const newComment = {
+			  message: newComments,
+			  timestamp: new Date().toLocaleString(), // Generera en tidsstämpel
+			};
+		
+			// Spara kommentarerna i en JSON-fil som heter db.json med hjälp av en fetch
 
-			// Spara kommentarerna i en JSON-fil som heter comments.json
-			saveCommentsToFile(updatedComments);
+			fetch('/api/comment', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newComment), // Skicka de uppdaterade kommentarerna till servern
+			})
+				.then((response) => {
+					if (response.ok) {
+						console.log('Kommentar sparad i databasen.');
+						// Om du vill ladda om kommentarerna från servern, kan du göra en ny GET-förfrågan här.
+					} else {
+						console.error('Det uppstod ett fel när kommentaren skulle sparas.');
+					}
+				})
+				.catch((error) => {
+					console.error('Något gick fel:', error);
+				});
 		}
 	};
-
-
 
 	return (
 		<div>
@@ -66,7 +83,7 @@ function Kippis() {
 								type="text"
 								placeholder="Skriv en kommentar"
 								value={newComments}
-								onChange={handleCommentChange}
+								onChange={(e) => handleCommentChange(e)}
 							/>
 							<button onClick={handleAddComment}>Lägg till kommentar</button>
 						</div>
