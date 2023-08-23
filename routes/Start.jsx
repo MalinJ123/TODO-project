@@ -1,8 +1,10 @@
 import React from "react";
 import "../stylesheet/start.css"; // Uppdatera sökvägen för styles.css
 import smoke from "../src/assets/smoke.jpg";
+import Kippis from "../data/kippis.jsx"
 
 function Start() {
+	
 	return (
 	  <>
 		 <div className="image-wrapper">
@@ -15,6 +17,7 @@ function Start() {
 			<div className="overlay button-wrapp">
 			<button className="button">Logga in </button>
 			<button className="button">Registrera ny användare</button></div>	
+			<Kippis/>
 			<img
 			  className="background-Pic mirror-image"
 			  src={smoke}
