@@ -7,8 +7,10 @@ function Kippis() {
 	const [showMessage, setShowMessage] = useState(false);
 	const [comments, setComments] = useState([]);
 	const [newComments, setNewComment] = useState('');
-	const commentFile = 'comments.json';
-
+	// const commentFile = 'comments.json'; .
+	// Om du vill spara kommentarer i en JSON-fil,
+	// behöver du använda läs- och skrivfunktioner för filer som fs.promises.readFile och fs.promises.writeFile.
+	
 	const puppy = {
 		name: 'Pepper',
 		breed: 'schäfer',
@@ -49,7 +51,7 @@ function Kippis() {
 						console.log('Kommentar sparad i databasen.');
 						// Om du vill ladda om kommentarerna från servern, kan du göra en ny GET-förfrågan här.
 					} else {
-						console.error('Det uppstod ett fel när kommentaren skulle sparas.');
+						console.error('Det uppstod ett fel när kommentaren skulle sparas!!.');
 					}
 				})
 				.catch((error) => {

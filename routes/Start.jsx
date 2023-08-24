@@ -15,6 +15,7 @@ function Start() {
 				/>
 				
 				<Kippis />
+			
 				<img
 					className="background-Pic mirror-image"
 					src={smoke}
