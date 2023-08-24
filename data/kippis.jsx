@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../stylesheet/start.css'; // Uppdatera sökvägen för styles.css
 import pepp from '../assets/pepp.jpg';
 // import {readFile, writeFile} from 'node:fs/promises'
@@ -6,11 +6,11 @@ import pepp from '../assets/pepp.jpg';
 function Kippis() {
 	const [showMessage, setShowMessage] = useState(false);
 	const [comments, setComments] = useState([]);
-	const [newComments, setNewComment] = useState('');
+	const [newComment, setNewComment] = useState('');
 	// const commentFile = 'comments.json'; .
 	// Om du vill spara kommentarer i en JSON-fil,
 	// behöver du använda läs- och skrivfunktioner för filer som fs.promises.readFile och fs.promises.writeFile.
-	
+
 	const puppy = {
 		name: 'Pepper',
 		breed: 'schäfer',
@@ -26,36 +26,46 @@ function Kippis() {
 		setShowMessage(false);
 	};
 
+	useEffect(() => {
+		// Ladda in kommentarerna från backend när komponenten laddas
+		fetch('/api/comment')
+			.then((response) => response.json())
+			.then((data) => {
+				setComments(data);
+			})
+			.catch((error) => {
+				console.error('Något gick fel:', error);
+			});
+	}, []); // Använd en tom beroendelista för att ladda in kommentarer en gång vid montering
+
 	const handleCommentChange = (e) => {
 		setNewComment(e.target.value);
 	};
 
 	const handleAddComment = () => {
-		if (newComments) {
-			const newComment = {
-			  message: newComments,
-			  timestamp: new Date().toLocaleString(), // Generera en tidsstämpel
-			};
-		
-			// Spara kommentarerna i en JSON-fil som heter db.json med hjälp av en fetch
-
-			fetch('/api/comment', {
+		if (newComment) {
+			const newCommentData = {
+				message: newComment,
+				timestamp: new Date().toLocaleString(),
+			  };
+			  
+			  // Skicka POST-förfrågan med newCommentData
+			  fetch('/api/comment', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json',
+				  'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(newComment), // Skicka de uppdaterade kommentarerna till servern
-			})
-				.then((response) => {
-					if (response.ok) {
-						console.log('Kommentar sparad i databasen.');
-						// Om du vill ladda om kommentarerna från servern, kan du göra en ny GET-förfrågan här.
-					} else {
-						console.error('Det uppstod ett fel när kommentaren skulle sparas!!.');
-					}
+				body: JSON.stringify(newCommentData),
+			  })
+				.then((response) => response.json())
+				.then((data) => {
+				  console.log(data.message);
+				  // Uppdatera state för att visa den nya kommentaren omedelbart
+				  setComments([...comments, newCommentData]); // Här använder vi newCommentData istället för newComment
+				  setNewComment(''); // Rensa inputfältet
 				})
 				.catch((error) => {
-					console.error('Något gick fel:', error);
+				  console.error('Något gick fel:', error);
 				});
 		}
 	};
@@ -78,13 +88,17 @@ function Kippis() {
 							<h2>Kommentarer</h2>
 							<ul>
 								{comments.map((comment, index) => (
-									<li key={index}>{comment}</li>
+									<li key={index}>
+										<p>{comment.message}</p>
+										<p>{comment.timestamp}</p>
+									</li>
 								))}
 							</ul>
+
 							<input
 								type="text"
 								placeholder="Skriv en kommentar"
-								value={newComments}
+								value={newComment}
 								onChange={(e) => handleCommentChange(e)}
 							/>
 							<button onClick={handleAddComment}>Lägg till kommentar</button>
