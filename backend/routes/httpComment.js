@@ -5,12 +5,12 @@ import { getDb } from '../database.js';
 const router = express.Router();
 const db = getDb();
 
-// Dessa endpoints behöver byggas för att vi ska ha ett RESTful API
-// x GET /comments
-// x GET /comment/:id
-// x POST /comment
-// x PUT /comment/:id
-// x DELETE /comment/:id
+// // Dessa endpoints behöver byggas för att vi ska ha ett RESTful API
+// // x GET /comments
+// // x GET /comment/:id
+// // x POST /comment
+// // x PUT /comment/:id
+// // x DELETE /comment/:id
 
 // Alla URL börjar med "/api/comment"
 router.get('/', async (req, res) => {
@@ -23,44 +23,28 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// POST-routen för att spara en ny kommentar
 router.post('/', async (req, res) => {
 	try {
-		const newComment = req.body; // Ta emot den nya kommentaren från användare
-
-		// Lägg till tidsstämpel
-		newComment.timestamp = new Date().toLocaleString();
-
-		// Läs in befintliga kommentarer från db.json
-		let comments = [];
-		try {
-			// Försök att läsa in befintliga kommentarer
-			const commentsData = fs.readFileSync('db.json', 'utf-8');
-			comments = JSON.parse(commentsData);
-		} catch (error) {
-			// Om filen inte finns eller är tom, kommer vi att hantera det som ett tomt kommentarsfält.
-			// Du kan också hantera detta på annat sätt beroende på din applikationslogik.
-			console.error('Fel vid inläsning av kommentarer:', error);
-		}
-
-		// Lägg till den nya kommentaren i listan
-		comments.push(newComment);
-
-		// Spara den uppdaterade listan till db.json
-		fs.writeFileSync('db.json', JSON.stringify(comments));
-
-		// Uppdatera databasen med de nya kommentarerna 
+		const newComment = req.body; // Hämta den nya kommentaren från request body
 		await db.read();
+
+		// Lägg till den nya kommentaren i din databas
 		db.data.comment.push(newComment);
+
+		// Spara ändringarna till din datafil
 		await db.write();
 
-		res.status(201).json({ newComment }); // Returnera den nya kommentaren som JSON
+		res.status(201).json(newComment); // Skicka tillbaka den nya kommentaren som svar
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ error: 'Kunde inte spara kommentaren.' });
+		res.status(500).json({ error: 'Kunde inte lägga till kommentaren.' });
 	}
 });
 
 
-export default router;
 
+
+
+
+
+export default router;

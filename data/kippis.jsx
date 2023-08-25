@@ -27,16 +27,29 @@ function Kippis() {
 	};
 
 	useEffect(() => {
-		// Ladda in kommentarerna från backend när komponenten laddas
+		// Ladda in kommentarerna från backend 
 		fetch('/api/comment')
-			.then((response) => response.json())
-			.then((data) => {
-				setComments(data);
-			})
-			.catch((error) => {
-				console.error('Något gick fel:', error);
-			});
-	}, []); // Använd en tom beroendelista för att ladda in kommentarer en gång vid montering
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error('Något gick fel med nätverksförfrågan');
+			}
+			return response.json();
+		})
+		.then((data) => {
+			try {
+				// Försök att pars JSON
+				if (data && data.length > 0) {
+					setComments(data);
+				} else {
+					setComments([]); // Sätt kommentarer till en tom lista om svaret är tomt
+				}
+			} catch (error) {
+				console.error('Fel vid JSON-parsning:', error);
+				// Hantera felet här, till exempel genom att visa ett felmeddelande för användaren
+			}
+		})
+	}, []);
+	
 
 	const handleCommentChange = (e) => {
 		setNewComment(e.target.value);
@@ -59,7 +72,7 @@ function Kippis() {
 			  })
 				.then((response) => response.json())
 				.then((data) => {
-				  console.log(data.message);
+				console.log(data.message);
 				  // Uppdatera state för att visa den nya kommentaren omedelbart
 				  setComments([...comments, newCommentData]); // Här använder vi newCommentData istället för newComment
 				  setNewComment(''); // Rensa inputfältet

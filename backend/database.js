@@ -14,5 +14,4 @@ function getDb() {
 }
 
 export { getDb }
-
 // Varför göra såhär export default getDb;
