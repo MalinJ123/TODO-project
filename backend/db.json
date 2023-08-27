@@ -1,16 +1,31 @@
 {
-  "comment": [
+	"comment": [
+		{
+			"message": "Vilken fin hund",
+			"timestamp": "12:00"
+		},
+		{
+			"message": "Nämen så stilig ",
+			"timestamp": "2023-08-25 18:19:55"
+		}
+	],
+
+	"jokes": [
+		{
+			"id": 1,
+			"joke": "Det står att när de skulle göra pannkakor i fängelset använde de en fånge som smet."
+		},
+		{
+			"id": 2,
+			"joke": "vilken pasta ligger närmst bilen?   Pasta Carbonara."
+		},
+		{
+			"id": 3,
+			"joke": "Varför sa aldrig hitler Hej tillbaks?  Han kunde inte svenska."
+		},
     {
-      "message": "Vilken fin hund",
-      "timestamp": "12:00"
-    },
-    {
-      "message": "Vilken STÖRTSKÖN hund",
-      "timestamp": "12:00"
-    },
-    {
-      "message": "Vilken SOLTORKADE TOMATER hund",
-      "timestamp": "12:00"
-    }
-  ]
+			"id": 4,
+			"joke": "Du måtte ha en livlig fantasi, Britt. - Varför det? - Jo, du ser så nöjd ut, när du tittar dig i spegeln."
+		}
+	]
 }
