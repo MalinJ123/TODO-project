@@ -85,7 +85,7 @@ function Kippis() {
 
 	return (
 		<div>
-			<button onClick={handleClick}>Visa meddelande</button>
+			<button className="showKippisBtn" onClick={handleClick}>Visa meddelande</button>
 			{showMessage && (
 				<div className="overlay2">
 					<div className="modal">
