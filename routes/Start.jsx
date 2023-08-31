@@ -3,49 +3,28 @@ import React from 'react';
 import smoke from '../src/assets/smoke.jpg';
 import Kippis from '../data/kippis.jsx';
 import crownClown from '../src/assets/crownClown.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Start() {
 	return (
 		<>
+			<div className="image-wrapper">
+			<div className='header-container'>
 
-			<input id="toggle" type="checkbox" />
-
-			<label className="toggle-container" for="toggle">
-				<span class="button-toggle"></span>
-				<h1 className="overlay title">
+			<div className="icon menu">
+					<FontAwesomeIcon icon={faBars} className="menu-icon" />
+				</div>
+				<h1 className="title">
 					Malins projekt
 					<img src={crownClown} alt="picture of the clowns crown" />
 				</h1>
-			</label>
 
-			<nav className="nav">
-				<a className="nav-item" href="#">
-					Dashboard
-				</a>
-				<a className="nav-item" href="#">
-					History
-				</a>
-				<a className="nav-item" href="#">
-					Statistics
-				</a>
-				<a className="nav-item" href="#">
-					Settings
-				</a>
-			</nav>
-			<div className="image-wrapper">
-				<img
-					className="background-pic one"
-					src={smoke}
-					alt="A picture of black and white smoke"
-				/>
-
+				<div className="icon login">
+					<FontAwesomeIcon icon={faSignInAlt} className="login-icon" />
+				</div>
+			</div>
 				<Kippis />
-
-				<img
-					className="background-pic mirror-image"
-					src={smoke}
-					alt="A picture of black and white smoke"
-				/>
 			</div>
 		</>
 	);
