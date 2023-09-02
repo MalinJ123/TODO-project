@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../stylesheet/start.css'; // Uppdatera sökvägen för styles.css
-import pepp from '../assets/pepp.jpg';
+import pepp from '../assets/pepp.jpg'
 // import {readFile, writeFile} from 'node:fs/promises'
 
 function Kippis() {
