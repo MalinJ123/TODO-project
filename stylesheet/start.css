@@ -41,6 +41,7 @@ body {
 .lightning {
 	transform: rotate(-90deg);
 	height: auto;
+width: 50em;
 }
 
 .title {

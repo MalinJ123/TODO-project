@@ -31,7 +31,7 @@ function Start() {
 				</div>
 				{/* <Kippis /> */}
 			</div>
-			{/* <img className="lightning" src={lightning} alt="pic of lightning" /> */}
+			<img className="lightning" src={lightning} alt="pic of lightning" />
 			{/* <Lightning /> */}
 		</>
 	);

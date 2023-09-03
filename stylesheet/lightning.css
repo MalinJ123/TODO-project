@@ -1,9 +1,7 @@
 .lightning {
   position: absolute;
-  top: 50%; /* Adjust as needed */
-  font-size: 2rem; /* Adjust the size */
-  color: rgb(169, 169, 26); /* Adjust the color */
-  animation: move 9s linear infinite; /* Adjust the animation duration */
+  top: 5%; 
+    /* animation: move 9s linear infinite;  */
 }
 
 @keyframes move {
