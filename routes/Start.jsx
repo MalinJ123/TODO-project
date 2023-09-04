@@ -3,16 +3,22 @@ import React, { useState } from 'react';
 import Kippis from '../components/kippis.jsx';
 import Menu from '../components/menu.jsx';
 import crownClown from '../src/assets/crownClown.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import lightning from '../src/assets/lightning.jpg';
-import Lightning from '../components/lightning.jsx';
+// import lightning from '../src/assets/lightning.jpg';
 import Login from '../components/Login.jsx';
+import smoke from '../src/assets/smoke.png'
 
 function Start() {
+
+	const backgroundStyle = {
+    backgroundImage: `url(${smoke})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '80vh',  };
+
 	return (
 		<>
-			<div className="image-wrapper">
+			<div>
 				<div className="header-container">
 					<div className="menu">
 						<div className="icon menu">
@@ -29,10 +35,12 @@ function Start() {
 					<Login/> 
 					</div>
 				</div>
+				<div style={backgroundStyle}> 
+				
 				{/* <Kippis /> */}
+				</div>
 			</div>
-			<img className="lightning" src={lightning} alt="pic of lightning" />
-			{/* <Lightning /> */}
+			{/* <img className="lightning" src={lightning} alt="pic of lightning" /> */}
 		</>
 	);
 }

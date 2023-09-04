@@ -16,10 +16,8 @@ function Menu() {
       <FontAwesomeIcon icon={faBars} />
     </div>
 
-      {/* You can conditionally render your overlay based on isOverlayOpen */}
       {isOverlayOpen && (
         <div className="overlay">
-          {/* Your overlay content goes here */}
          
         </div>
       )}

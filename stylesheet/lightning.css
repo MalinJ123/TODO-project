@@ -6,7 +6,6 @@
 
 @keyframes move {
   0% {
-    /* top:100px; */
     left: -100px; /* Adjust the starting position */
   }
   100% {
